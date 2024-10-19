@@ -1,5 +1,11 @@
+import SplashScreen from "./components/SplashScreen";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <SplashScreen />
+    </div>
+  );
 };
 
 export default App;
