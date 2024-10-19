@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react"; // Import useEffect and useState for cursor effect
+import { useEffect, useState } from "react";
 import pinkstar from "../assets/pinkstar.png";
 
 const SplashScreen = () => {
@@ -40,17 +40,17 @@ const SplashScreen = () => {
 
   const dotSizes = [12, 10, 8, 6, 4];
   const dotColors = [
-    "rgba(93, 36, 184, 0.8)",
-    "rgba(106, 59, 177, 0.8)",
-    "rgba(123, 74, 181, 0.8)",
-    "rgba(158, 82, 196, 0.8)",
-    "rgba(178, 90, 219, 0.8)",
+    "rgba(178, 102, 255, 0.8)", // Light purple
+    "rgba(212, 104, 250, 0.8)", // Medium purple-pink
+    "rgba(252, 134, 255, 0.8)", // Bright pink
+    "rgba(140, 102, 252, 0.8)", // Rich purple-blue
+    "rgba(105, 64, 255, 0.8)", // Deep blue-violet
   ];
 
   const text = "Elysian Cleo"; // The text to animate
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen relative overflow-hidden bg-gradient-to-r from-pink-400 via-purple-500 to-violet-600">
+    <div className="flex items-center justify-center w-screen h-screen relative overflow-hidden bg-gradient-to-r from-purple-800 via-purple-600 to-violet-700">
       {/* Removed Curtain Effect */}
 
       <motion.div
@@ -62,16 +62,24 @@ const SplashScreen = () => {
         {text.split("").map((letter, index) => (
           <motion.span
             key={index}
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -20, rotate: -10, scale: 0.8 }}
             animate={{
               opacity: 1,
               y: 0,
+              rotate: 0,
+              scale: 1,
               transition: {
-                delay: index * 0.1, // Staggered animation for each letter
+                delay: index * 0.1 + Math.random() * 0.05, // Slightly randomize delay
+                ease: [0.6, 0.01, -0.05, 0.95], // Ease with a bounce effect
               },
             }}
-            className="text-[#f4e9e5] text-5xl md:text-7xl lg:text-9xl font-bold tracking-wide z-10 mx-1" // Added mx-1 for spacing
-            whileHover={{ color: "rgba(255, 255, 255, 0.9)", scale: 1.2 }}
+            className="text-[#f4e9e5] text-5xl md:text-7xl lg:text-9xl font-bold tracking-wide z-10 mx-1"
+            whileHover={{
+              scale: 1.3,
+              rotate: Math.random() * 15 - 7.5, // Rotate slightly in either direction
+              color: "rgba(255, 255, 255, 0.9)",
+              transition: { duration: 0.3 },
+            }}
           >
             {letter}
           </motion.span>
@@ -121,7 +129,6 @@ const SplashScreen = () => {
       <div className="absolute w-full h-full pointer-events-none">
         <div className="bg-pattern-1 w-full h-full absolute top-0 left-0 opacity-40" />
         <div className="bg-pattern-2 w-full h-full absolute top-0 left-0 opacity-40" />
-        {/* Add more patterns here if desired */}
       </div>
 
       <style>{`
