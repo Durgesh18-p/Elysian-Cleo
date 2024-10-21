@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import pinkstar from "../assets/pinkstar.png";
 
-const SplashScreen = () => {
+const SplashScreen = ({ handleCurtain }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0); // State for current rotation
@@ -69,14 +70,14 @@ const SplashScreen = () => {
               rotate: 0,
               scale: 1,
               transition: {
-                delay: index * 0.1 + Math.random() * 0.05, // Slightly randomize delay
-                ease: [0.6, 0.01, -0.05, 0.95], // Ease with a bounce effect
+                delay: index * 0.1 + Math.random() * 0.05,
+                ease: [0.6, 0.05, 0.1, 0.9], // Fixed easing function
               },
             }}
             className="text-[#f4e9e5] text-5xl md:text-7xl lg:text-9xl font-bold tracking-wide z-10 mx-1"
             whileHover={{
               scale: 1.3,
-              rotate: Math.random() * 15 - 7.5, // Rotate slightly in either direction
+              rotate: Math.random() * 15 - 7.5,
               color: "rgba(255, 255, 255, 0.9)",
               transition: { duration: 0.3 },
             }}
@@ -98,6 +99,9 @@ const SplashScreen = () => {
       <motion.button className="absolute bottom-20 left-1/2 transform -translate-x-1/2 border-[1px] border-[#5d24b8] py-2 px-4 rounded-full font-semibold text-lg text-white duration-300 ease-in-out hover:bg-gradient-to-r hover:from-[#9e3abd] hover:via-[#9a25b1] hover:to-[#4b228d]">
         <motion.span
           whileHover={{ scale: 1.05, color: "rgba(255, 255, 255, 0.9)" }}
+          onClick={() => {
+            handleCurtain();
+          }}
         >
           Explore Luxury
         </motion.span>
@@ -125,7 +129,6 @@ const SplashScreen = () => {
         />
       ))}
 
-      {/* Background Patterns */}
       <div className="absolute w-full h-full pointer-events-none">
         <div className="bg-pattern-1 w-full h-full absolute top-0 left-0 opacity-40" />
         <div className="bg-pattern-2 w-full h-full absolute top-0 left-0 opacity-40" />
